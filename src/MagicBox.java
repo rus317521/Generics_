@@ -1,22 +1,17 @@
-import java.sql.Array;
 import java.util.Random;
 
 public class MagicBox<T> {
     public static int count;
     public T value;
-    //public T[] items;
-    // protected T[] items = (T[]) new Object[count];
-    //public  T[] itemsP;
-    T[] itemsP ;
+    T[] itemsP;
 
-    public <T> MagicBox(int count) {
+    public MagicBox(int count) {
         this.count = count;
         T[] items = (T[]) new Object[count];
         for (int i = 0; i < items.length; i++) {
             items[i] = null;
         }
-        itemsP=items;
-       //return items;
+        itemsP = items;
     }
 
     public boolean add(T item) {
@@ -40,11 +35,9 @@ public class MagicBox<T> {
         for (int i = 0; i < itemsP.length; i++) {
             if (itemsP[i] == null) {
                 bl = false;
-                int k = count - 1 - i;
+                int k = count - i;
                 String str = Integer.toString(k);
-                new RuntimeException("Коробка не полна, осталось заполнить " + str + " ячеек");
-                randomInt = k;
-                break;
+                throw new RuntimeException("Коробка не полна, осталось заполнить " + str + " ячеек");
             }
         }
         if (bl == true) {
