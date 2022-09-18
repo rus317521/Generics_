@@ -1,3 +1,4 @@
+import java.sql.Array;
 import java.util.Random;
 
 public class MagicBox<T> {
@@ -5,7 +6,8 @@ public class MagicBox<T> {
     public T value;
     //public T[] items;
     // protected T[] items = (T[]) new Object[count];
-    public T[] items;
+    //public  T[] itemsP;
+    T[] itemsP ;
 
     public <T> MagicBox(int count) {
         this.count = count;
@@ -13,6 +15,8 @@ public class MagicBox<T> {
         for (int i = 0; i < items.length; i++) {
             items[i] = null;
         }
+        itemsP=items;
+       //return items;
     }
 
     public boolean add(T item) {
@@ -20,8 +24,8 @@ public class MagicBox<T> {
         b = false;
 
         for (int j = 0; j < count; j++) {
-            if (items[j] == null) {
-                items[j] = item;
+            if (itemsP[j] == null) {
+                itemsP[j] = item;
                 b = true;
                 break;
             }
@@ -33,8 +37,8 @@ public class MagicBox<T> {
     public T pick() {
         int randomInt = 0;
         boolean bl = true;
-        for (int i = 0; i < MagicBox.this.items.length; i++) {
-            if (MagicBox.this.items[i] == null) {
+        for (int i = 0; i < itemsP.length; i++) {
+            if (itemsP[i] == null) {
                 bl = false;
                 int k = count - 1 - i;
                 String str = Integer.toString(k);
@@ -45,10 +49,10 @@ public class MagicBox<T> {
         }
         if (bl == true) {
             Random random = new Random();
-            randomInt = random.nextInt(items.length); // джава подберёт случайное число от 0 до ЧИСЛО невключительно//
-            return items[randomInt];
+            randomInt = random.nextInt(itemsP.length); // джава подберёт случайное число от 0 до ЧИСЛО невключительно//
+            return itemsP[randomInt];
         }
-        return items[randomInt];
+        return itemsP[randomInt];
     }
 
 }
