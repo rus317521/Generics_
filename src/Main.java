@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        //String[] items1 = new String[5];
+
         MagicBox<String> magicBox1 = new MagicBox<String>(5);
         System.out.println(magicBox1.add("Stroka1"));
         System.out.println(magicBox1.add("Stroka2"));

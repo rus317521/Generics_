@@ -1,9 +1,10 @@
 import java.util.Random;
 
 public class MagicBox<T> {
-    public static int count;
-    public T value;
-    T[] itemsP;
+    private int count;
+    private T value;
+    private T[] itemsP;
+    private Random random = new Random();
 
     public MagicBox(int count) {
         this.count = count;
@@ -15,33 +16,33 @@ public class MagicBox<T> {
     }
 
     public boolean add(T item) {
-        boolean b;
-        b = false;
+        boolean boxNotFull;
+        boxNotFull = false;
 
         for (int j = 0; j < count; j++) {
             if (itemsP[j] == null) {
                 itemsP[j] = item;
-                b = true;
+                boxNotFull = true;
                 break;
             }
         }
 
-        return b;
+        return boxNotFull;
     }
 
     public T pick() {
         int randomInt = 0;
-        boolean bl = true;
+        boolean boxFull = true;
         for (int i = 0; i < itemsP.length; i++) {
             if (itemsP[i] == null) {
-                bl = false;
-                int k = count - i;
-                String str = Integer.toString(k);
-                throw new RuntimeException("Коробка не полна, осталось заполнить " + str + " ячеек");
+                boxFull = false;
+                int countFreeCells = count - i;
+                String countFreeStr = Integer.toString(countFreeCells);
+                throw new RuntimeException("Коробка не полна, осталось заполнить " + countFreeStr + " ячеек");
             }
         }
-        if (bl == true) {
-            Random random = new Random();
+        if (boxFull == true) {
+
             randomInt = random.nextInt(itemsP.length); // джава подберёт случайное число от 0 до ЧИСЛО невключительно//
             return itemsP[randomInt];
         }
