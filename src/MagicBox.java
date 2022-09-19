@@ -2,7 +2,6 @@ import java.util.Random;
 
 public class MagicBox<T> {
     private int count;
-    private T value;
     private T[] itemsP;
     private Random random = new Random();
 
@@ -41,7 +40,7 @@ public class MagicBox<T> {
                 throw new RuntimeException("Коробка не полна, осталось заполнить " + countFreeStr + " ячеек");
             }
         }
-        if (boxFull == true) {
+        if (boxFull) {
 
             randomInt = random.nextInt(itemsP.length); // джава подберёт случайное число от 0 до ЧИСЛО невключительно//
             return itemsP[randomInt];
